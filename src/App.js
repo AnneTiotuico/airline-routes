@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import data from './data'
+import { getAirlineById } from './data';
+import { getAirportByCode } from './data';
 
 const { routes, airlines, airports } = data
-
-console.log(routes)
 
 const App = () => (
   
@@ -23,10 +23,10 @@ const App = () => (
       </thead>
       <tbody>
         {routes.map(route => 
-          <tr>
-            <td>{route.airline}</td>
-            <td>{route.src}</td>
-            <td>{route.dest}</td>
+          <tr key={route.airline + route.src + route.dest}>
+            <td>{getAirlineById(route.airline).name}</td>
+            <td>{getAirportByCode(route.src).name}</td>
+            <td>{getAirportByCode(route.dest).name}</td>
           </tr>
         )}
       </tbody>
