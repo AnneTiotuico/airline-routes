@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import data from './data'
 import { getAirlineById } from './data';
@@ -26,14 +26,13 @@ const App = () => (
   <header className="header">
     <h1 className="title">Airline Routes</h1>
   </header>
-  <section>
-    <Table 
-      className="routes-table" 
-      columns={columns} 
-      rows={routes} 
-      format={formatValue} 
-    />
-  </section>
+  <Table 
+    className="routes-table" 
+    columns={columns} 
+    rows={routes} 
+    format={formatValue} 
+    perPage={25}
+  />
 </div>
 )
 
