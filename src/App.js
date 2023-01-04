@@ -68,7 +68,6 @@ const App = () => {
     return newAirportObj;
   });
   
-  
   return (
     <div className="app">
       <header className="header">

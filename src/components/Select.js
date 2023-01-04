@@ -2,10 +2,10 @@ import React from 'react';
 
 const Select = ({ options, valueKey, titleKey, allTitle, value, onSelect }) => {
   const handleChange = (e) => {
+    console.log(value, e.target.value)
     onSelect(e.target.value);
   }
 
-  console.log(options, 'opts')
   const disabledOption = (opt) => {
     if (opt.disabled) {
       return opt.disabled;
@@ -13,11 +13,13 @@ const Select = ({ options, valueKey, titleKey, allTitle, value, onSelect }) => {
     return false;
   } 
 
+  console.log(value, 'value')
+
   return (
     <select name={titleKey} id={valueKey} onChange={handleChange}>
-      <option value='all'>{allTitle}</option>
+      <option value='all' defaultValue={value}>{allTitle}</option>
       {options.map(opt => 
-        <option value={opt[valueKey]} key={opt[valueKey]} disabled={disabledOption(opt)}>{opt.name}</option>
+        <option key={opt[valueKey]} value={opt[valueKey]} selected={opt[valueKey] === value} disabled={disabledOption(opt)}>{opt.name}</option>
       )}
     </select>
   );
