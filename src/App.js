@@ -39,13 +39,16 @@ const App = () => {
     return airline;
   });
 
+  const selectedAirport = (value) => {
+    setAirport(value);
+  }
+
+  const filteredAirports = airports.filter((airport) => {
+    return airport;
+  });
+
   const filteredRoutes = routes.filter((route) => {
-    /*
-      - display all routes if airline && airport === all
-      - else, display the routes that match the airline (code)
-        && the src OR dest match the airport  
-    */
-    return (airline === "all" && airport === "all") || (route.airline === airline)
+    return (airline === "all" || route.airline === airline) && (airport === "all" || route.src === airport || route.dest === airport) 
   });
   
   return (
@@ -60,6 +63,14 @@ const App = () => {
         allTitle="All Airlines"
         value=""
         onSelect={selectedAirline}
+      />
+      <Select 
+        options={filteredAirports}
+        valueKey="id"
+        titleKey="name"
+        allTitle="All Airports"
+        value=""
+        onSelect={selectedAirport}
       />
       <Table 
         className="routes-table" 
