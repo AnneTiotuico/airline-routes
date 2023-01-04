@@ -6,12 +6,18 @@ const Select = ({ options, valueKey, titleKey, allTitle, value, onSelect }) => {
   }
 
   console.log(options, 'opts')
+  const disabledOption = (opt) => {
+    if (opt.disabled) {
+      return opt.disabled;
+    }
+    return false;
+  } 
 
   return (
     <select name={titleKey} id={valueKey} onChange={handleChange}>
       <option value='all'>{allTitle}</option>
       {options.map(opt => 
-        <option value={opt.id || opt.code} key={opt.id || opt.code}>{opt.name}</option>
+        <option value={opt[valueKey]} key={opt[valueKey]} disabled={disabledOption(opt)}>{opt.name}</option>
       )}
     </select>
   );
