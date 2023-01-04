@@ -8,16 +8,11 @@ const Table = ({ className, columns, rows, format, perPage }) => {
   const currentRoutes = rows.slice(startRoute, endRoute);
 
   const handlePrevPage = () => {
-    if (page > 0) {
-      setPage(page - 1)
-    }
+    setPage(page - 1);
   }
 
   const handleNextPage = () => {
-    console.log(page, totalRoutes)
-    if (page < totalRoutes / perPage - 1) {
-      setPage(page + 1)
-    }
+    setPage(page + 1);
   }
 
   return (
@@ -44,7 +39,7 @@ const Table = ({ className, columns, rows, format, perPage }) => {
       <button disabled={page === 0} onClick={handlePrevPage}>Previous Page</button>
       <button disabled={page === totalRoutes / perPage - 1} onClick={handleNextPage}>Next Page</button>
     </section>
-  )
+  );
 }
 
-export default Table
+export default Table;
