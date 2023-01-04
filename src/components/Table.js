@@ -5,6 +5,9 @@ const Table = ({ className, columns, rows, format, perPage }) => {
   let startRoute = page * perPage;
   let endRoute = startRoute + perPage;
   const totalRoutes = rows.length;
+  if (endRoute > totalRoutes) {
+    endRoute = totalRoutes;
+  }
   const currentRoutes = rows.slice(startRoute, endRoute);
 
   const handlePrevPage = () => {
@@ -37,7 +40,7 @@ const Table = ({ className, columns, rows, format, perPage }) => {
       </table>
       <p>Showing {startRoute + 1}-{endRoute} of {totalRoutes} routes.</p>
       <button disabled={page === 0} onClick={handlePrevPage}>Previous Page</button>
-      <button disabled={page === totalRoutes / perPage - 1} onClick={handleNextPage}>Next Page</button>
+      <button disabled={page === totalRoutes / perPage - 1 || currentRoutes.length < perPage} onClick={handleNextPage}>Next Page</button>
     </section>
   );
 }
